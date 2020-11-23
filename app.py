@@ -65,7 +65,7 @@ def try_trades():
             buy_price = float(i['avg_entry_price'])
             print("Stock: " + i['symbol'] + ", Current price: " + str(curr) + ", Buy price: " + str(buy_price) + ", Percent change: " + str(curr/buy_price*100))
             if (curr/(1 + TARGET_PERCENT) >= buy_price):
-                response = create_order(i['symbol'],i['qyt'],"sell",'market','gtc')
+                response = create_order(i['symbol'],i['qty'],"sell",'market','gtc')
                 print("Order created!")
                 print(response)
 
