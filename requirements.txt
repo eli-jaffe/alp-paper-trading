@@ -1,2 +1,1 @@
 requests
-os==10.15.5
