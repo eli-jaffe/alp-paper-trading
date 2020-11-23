@@ -41,7 +41,7 @@ def get_positions():
 orders = get_orders()
 
 print(orders)
-
+time.sleep(1800)
 #response = get_account()
 #response = get_positions()
 # print(orders[0]['id'])
