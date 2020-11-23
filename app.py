@@ -41,7 +41,7 @@ def get_positions():
 orders = get_orders()
 
 print(orders)
-time.sleep(1800)
+time.sleep(15)
 #response = get_account()
 #response = get_positions()
 # print(orders[0]['id'])
@@ -58,21 +58,20 @@ time.sleep(1800)
 # input target percent increase at which to trade (0.XX format)
 TARGET_PERCENT = 0.01
 def try_trades():
-    while True:
-        positions = get_positions()
-        if positions:
-            for i in positions:
-                curr = i['current_price']
-                buy_price = i['avg_entry_price']
-                print(curr, buy_price)
-                if (curr/(1 + TARGET_PERCENT) >= buy_price):
-                    response = create_order(i['symbol'],i['qyt'],"sell",'market','gtc')
-                    print(response)
+    positions = get_positions()
+    if positions:
+        for i in positions:
+            curr = i['current_price']
+            buy_price = i['avg_entry_price']
+            print(curr, buy_price)
+            if (curr/(1 + TARGET_PERCENT) >= buy_price):
+                response = create_order(i['symbol'],i['qyt'],"sell",'market','gtc')
+                print(response)
 
-                    #send email notification (alpaca might do this automatically)
-        else:
-            print("You do not currently hold any positions")
+                #send email notification (alpaca might do this automatically)
+    else:
+        print("You do not currently hold any positions")
 
-        time.sleep(15)
-
-# try_trades()
+while True:
+    try_trades()
+    time.sleep(15)
