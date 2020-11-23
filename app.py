@@ -38,10 +38,10 @@ def get_positions():
     r = requests.get("{}/v2/positions".format(BASE_URL), headers=HEADERS)
 
     return json.loads(r.content)
-orders = get_orders()
+#orders = get_orders()
 
-print(orders)
-time.sleep(15)
+#print(orders)
+#time.sleep(15)
 #response = get_account()
 #response = get_positions()
 # print(orders[0]['id'])
@@ -56,7 +56,7 @@ time.sleep(15)
 ###
 
 # input target percent increase at which to trade (0.XX format)
-TARGET_PERCENT = 0.01
+TARGET_PERCENT = 0.03
 def try_trades():
     positions = get_positions()
     if positions:
