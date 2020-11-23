@@ -66,6 +66,7 @@ def try_trades():
             print(curr, buy_price)
             if (curr/(1 + TARGET_PERCENT) >= buy_price):
                 response = create_order(i['symbol'],i['qyt'],"sell",'market','gtc')
+                print("Order created!")
                 print(response)
 
                 #send email notification (alpaca might do this automatically)
@@ -74,4 +75,4 @@ def try_trades():
 
 while True:
     try_trades()
-    time.sleep(15)
+    time.sleep(1800)
