@@ -8,8 +8,7 @@ ACCOUNT_URL = "{}/v2/account".format(BASE_URL)
 ORDERS_URL = "{}/v2/orders".format(BASE_URL)
 HEADERS = {'APCA-API-KEY-ID': os.environ.get('APCA_API_KEY_ID'), 'APCA-API-SECRET-KEY': os.environ.get('APCA_API_SECRET_KEY')}
 
-print("API KEY is: " + str(os.environ.get('APCA_API_KEY_ID')))
-print("Secret key is: " + str(os.environ.get('APCA_API_SECRET_KEY')))
+
 def get_account():
     r = requests.get(ACCOUNT_URL, headers=HEADERS)
 
