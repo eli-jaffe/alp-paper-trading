@@ -61,8 +61,8 @@ def try_trades():
     positions = get_positions()
     if positions:
         for i in positions:
-            curr = i['current_price']
-            buy_price = i['avg_entry_price']
+            curr = float(i['current_price'])
+            buy_price = float(i['avg_entry_price'])
             print(curr, buy_price)
             if (curr/(1 + TARGET_PERCENT) >= buy_price):
                 response = create_order(i['symbol'],i['qyt'],"sell",'market','gtc')
