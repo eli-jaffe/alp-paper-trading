@@ -8,6 +8,8 @@ ACCOUNT_URL = "{}/v2/account".format(BASE_URL)
 ORDERS_URL = "{}/v2/orders".format(BASE_URL)
 HEADERS = {'APCA-API-KEY-ID': os.environ.get('APCA_API_KEY_ID'), 'APCA-API-SECRET-KEY': os.environ.get('APCA_API_SECRET_KEY')}
 
+# change this depending on your target. Input target percent increase at which to trade (0.XX format)
+TARGET_PERCENT = 0.10
 
 def get_account():
     r = requests.get(ACCOUNT_URL, headers=HEADERS)
@@ -32,14 +34,12 @@ def get_orders():
 
     return json.loads(r.content)
 
-#response = create_order("MDB", 100, "buy", "market", "day")
-
 def get_positions():
     r = requests.get("{}/v2/positions".format(BASE_URL), headers=HEADERS)
 
     return json.loads(r.content)
-#orders = get_orders()
 
+print()
 #print(orders)
 #time.sleep(15)
 #response = get_account()
@@ -55,8 +55,6 @@ def get_positions():
 # s.login(MY_ADDRESS, PASSWORD)
 ###
 
-# input target percent increase at which to trade (0.XX format)
-TARGET_PERCENT = 0.01
 def try_trades():
     positions = get_positions()
     if positions:
@@ -65,9 +63,8 @@ def try_trades():
             buy_price = float(i['avg_entry_price'])
             print("Stock: " + i['symbol'] + ", Current price: " + str(curr) + ", Buy price: " + str(buy_price) + ", Percent change: " + str(curr/buy_price*100))
             if (curr/(1 + TARGET_PERCENT) >= buy_price):
-                response = create_order(i['symbol'],i['qty'],"sell",'market','gtc')
-                print("Order created!")
-                print(response)
+                response = create_order(i['symbol'],i['qty'],"sell",'market','day')
+                print("Order created to sell " + response['qty'] + " stocks of " + response['symbol'])
 
                 #send email notification (alpaca might do this automatically)
     else:
@@ -75,4 +72,4 @@ def try_trades():
 
 while True:
     try_trades()
-    time.sleep(1800)
+    time.sleep(1200)
