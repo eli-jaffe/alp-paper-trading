@@ -75,4 +75,4 @@ def try_trades():
 
 while True:
     try_trades()
-    time.sleep(15)
+    time.sleep(1800)
