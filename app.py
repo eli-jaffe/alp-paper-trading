@@ -56,7 +56,7 @@ def get_positions():
 ###
 
 # input target percent increase at which to trade (0.XX format)
-TARGET_PERCENT = 0.03
+TARGET_PERCENT = 0.01
 def try_trades():
     positions = get_positions()
     if positions:
